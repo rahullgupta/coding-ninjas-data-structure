@@ -32,14 +32,37 @@ int main()
 }
 */
 
-long staircase(int n)
+#include <bits/stdc++.h>
+using namespace std;
+
+long long mod = 1e9 + 7;
+
+int staircase(int n)
 {
-    // Write your code here
-    long *ans = new long[n + 1];
-    ans[0] = 1;
-    ans[1] = 1;
-    ans[2] = 2;
-    for (int i = 3; i <= n; i++)
-        ans[i] = ans[i - 1] + ans[i - 2] + ans[i - 3];
-    return ans[n];
+    if (n <= 1)
+    {
+        return 1;
+    }
+    long long a = 1, b = 1, c = 2;
+
+    for (int i = 0; i <= n - 3; ++i)
+    {
+        long long d = (a + b + c) % mod;
+        a = b;
+        b = c;
+        c = d;
+    }
+    return c;
+}
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        cout << staircase(n) << endl;
+    }
 }
