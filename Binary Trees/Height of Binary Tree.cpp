@@ -90,23 +90,10 @@ int main() {
 }
 */
 
-void heightMax(BinaryTreeNode<int> *root, int height, int *max)
-{
-    if (root == NULL)
-        return;
-    if ((*max) < height)
-        *max = height;
-    if (root->left != NULL)
-        heightMax(root->left, 1 + height, max);
-    if (root->right != NULL)
-        heightMax(root->right, 1 + height, max);
-}
 int height(BinaryTreeNode<int> *root)
 {
     // Write our code here
     if (root == NULL)
         return 0;
-    int height = 1, max = 1;
-    heightMax(root, height, &max);
-    return max;
+    return 1 + max(height(root -> left), height(root -> right));
 }
