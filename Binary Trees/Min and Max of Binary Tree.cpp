@@ -82,33 +82,15 @@ int main() {
 */
 
 #include <climits>
-void Min(BinaryTreeNode<int> *root, int *min)
-{
-    if (root == NULL)
-        return;
-    if ((*min) > root->data)
-        *min = root->data;
-    Min(root->left, min);
-    Min(root->right, min);
-}
-void Max(BinaryTreeNode<int> *root, int *max)
-{
-    if (root == NULL)
-        return;
-    if ((*max) < root->data)
-        *max = root->data;
-    Max(root->left, max);
-    Max(root->right, max);
-}
-pair<int, int> getMinAndMax(BinaryTreeNode<int> *root)
-{
-    // Write your code here
-    pair<int, int> p = {0, 0};
+pair<int, int> getMinAndMax(BinaryTreeNode<int> *root) {
+	// Write your code here
+    pair<int, int> p = {INT_MAX, INT_MIN};
     if (root == NULL)
         return p;
-    int min = INT_MAX, max = INT_MIN;
-    Min(root, &min);
-    Max(root, &max);
-    p = {min, max};
-    return p;
+    pair<int, int> a = {root -> data, root -> data};
+    pair<int, int> b = getMinAndMax(root -> left);
+    pair<int, int> c = getMinAndMax(root -> right);
+    a.first = min(a.first, min(b.first, c.first));
+    a.second = max(a.second, max(b.second, c.second));
+    return a;
 }
