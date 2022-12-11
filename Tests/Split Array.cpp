@@ -63,7 +63,7 @@ bool spliter(int arr[], int n, int start, int ls, int rs)
     else if (arr[start] % 3 == 0)
         rs += arr[start];
     else
-        return spliter(arr, n, start + 1, ls + arr[start], rs) + spliter(arr, n, start + 1, ls, rs + arr[start]);
+        return spliter(arr, n, start + 1, ls + arr[start], rs) || spliter(arr, n, start + 1, ls, rs + arr[start]);
     return spliter(arr, n, start + 1, ls, rs);
 }
 bool splitArray(int *input, int size)
